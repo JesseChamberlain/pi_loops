@@ -7,13 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #70 digits of pi for initial seed testing.
-PI_DIGITS = "1415926535897932384626433832795028841971693993751058209749445923078164"
+PI_DIGITS = "14 159 265358979 3238462643383 27950288 419716939937 510582097 4944592 307816406286"
 
-pi_digits_array = PI_DIGITS.split("")
+pi_digits_array = PI_DIGITS.split(%r{\s*})
 
 pi_digits_array.each_with_index do |d, i|
+  # Adjust to address end of string problems
   unless i == (pi_digits_array.length - 11)
     pi_digit = Pi_digit.new
+    # 0 issue
     digit = d.to_i
     two_digits = (digit * 10) + pi_digits_array[i+1].to_i
     three_digits = (two_digits * 10) + pi_digits_array[i+2].to_i
