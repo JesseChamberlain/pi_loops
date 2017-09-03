@@ -1,18 +1,16 @@
 class CreatePiDigits < ActiveRecord::Migration[5.1]
   def change
     create_table :pi_digits do |t|
-      t.integer :digit, limit: 8, null: false
-      t.integer :two_digits, limit: 8, null: true
-      t.integer :three_digits, limit: 8, null: true
-      t.integer :four_digits, limit: 8, null: true
-      t.integer :five_digits, limit: 8, null: true
-      t.integer :six_digits, limit: 8, null: true
-      t.integer :seven_digits, limit: 8, null: true
-      t.integer :eight_digits, limit: 8, null: true
-      t.integer :nine_digits, limit: 8, null: true
-      t.integer :ten_digits, limit: 8, null: true
+      t.bigint :digit, null: false
+      t.bigint :two_digits, null: true
+      t.bigint :three_digits, null: true
+      t.bigint :four_digits, null: true
+      t.bigint :five_digits, null: true
+      t.bigint :six_digits, null: true
+      t.bigint :seven_digits, null: true
+      t.bigint :eight_digits, null: true
+      t.bigint :nine_digits, null: true
+      t.bigint :ten_digits, null: true
     end
-
-    add_index :pi_digits, :digit
   end
 end
