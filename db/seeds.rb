@@ -25,19 +25,6 @@ pi_digits_array.each_with_index do |d, i|
     nine_digits = (eight_digits * 10) + pi_digits_array[i+8].to_i
     ten_digits = (nine_digits * 10) + pi_digits_array[i+9].to_i
 
-    # pi_digit.assign_attributes(
-    #   digit: digit,
-    #   two_digits: two_digits,
-    #   three_digits: 0,
-    #   four_digits: 0,
-    #   five_digits: 0,
-    #   six_digits: 0,
-    #   seven_digits: 0,
-    #   eight_digits: 0,
-    #   nine_digits: 0,
-    #   ten_digits: 0
-    # )
-
     pi_digit.assign_attributes(
       digit: digit,
       two_digits: two_digits,

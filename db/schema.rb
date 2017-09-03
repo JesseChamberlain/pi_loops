@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20170903175822) do
     t.bigint "eight_digits"
     t.bigint "nine_digits"
     t.bigint "ten_digits"
-    t.index ["digit"], name: "index_pi_digits_on_digit"
   end
 
 end
