@@ -7,9 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #70 digits of pi for initial seed testing.
-PI_DIGITS = "14 159 265358979 3238462643383 27950288 419716939937 510582097 4944592 307816406286"
+require_relative "pi"
 
-pi_digits_array = PI_DIGITS.split(%r{\s*})
+pi = Pi.new
+pi_digits_array = pi.pi_digits.split(%r{\s*})
 
 pi_digits_array.each_with_index do |d, i|
 
