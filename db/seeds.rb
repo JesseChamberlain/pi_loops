@@ -7,17 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #70 digits of pi for initial seed testing.
-PI_DIGITS = "14 159 265358979 3238462643383 27950288 419716939937 510582097 4944592 307816406286"
+require_relative "pi"
 
-pi_digits_array = PI_DIGITS.split(%r{\s*})
+pi = Pi.new
+pi_digits_array = pi.pi_digits.split(%r{\s*})
 
 pi_digits_array.each_with_index do |d, i|
+
   # Adjust to address end of string problems
-  unless i == (pi_digits_array.length - 11)
+  if i <= (pi_digits_array.length - 11)
     pi_digit = Pi_digit.new
     digit = d.to_i
-    
-    # account for 0 issue
+
+    # Conditional to account for '0' issue
     if digit == 0
       pi_digit.assign_attributes(
         digit: digit,
@@ -32,15 +34,20 @@ pi_digits_array.each_with_index do |d, i|
         ten_digits: digit
       )
     else
-      two_digits = (digit * 10) + pi_digits_array[i+1].to_i
-      three_digits = (two_digits * 10) + pi_digits_array[i+2].to_i
-      four_digits = (three_digits * 10) + pi_digits_array[i+3].to_i
-      five_digits = (four_digits * 10) + pi_digits_array[i+4].to_i
-      six_digits = (five_digits * 10) + pi_digits_array[i+5].to_i
-      seven_digits = (six_digits * 10) + pi_digits_array[i+6].to_i
-      eight_digits = (seven_digits * 10) + pi_digits_array[i+7].to_i
-      nine_digits = (eight_digits * 10) + pi_digits_array[i+8].to_i
-      ten_digits = (nine_digits * 10) + pi_digits_array[i+9].to_i
+      # Helper to calulate columns in each digit row
+      def column_creator(current_digit, next_digit)
+        (current_digit * 10) + next_digit.to_i
+      end
+
+      two_digits = column_creator(digit, pi_digits_array[i + 1])
+      three_digits = column_creator(two_digits, pi_digits_array[i + 2])
+      four_digits = column_creator(three_digits, pi_digits_array[i + 3])
+      five_digits = column_creator(four_digits, pi_digits_array[i + 4])
+      six_digits = column_creator(five_digits, pi_digits_array[i + 5])
+      seven_digits = column_creator(six_digits, pi_digits_array[i + 6])
+      eight_digits = column_creator(seven_digits, pi_digits_array[i + 7])
+      nine_digits = column_creator(eight_digits, pi_digits_array[i + 8])
+      ten_digits = column_creator(nine_digits, pi_digits_array[i + 9])
 
       pi_digit.assign_attributes(
         digit: digit,
@@ -55,6 +62,7 @@ pi_digits_array.each_with_index do |d, i|
         ten_digits: ten_digits
       )
     end
+
     pi_digit.save!
   end
 end
