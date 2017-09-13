@@ -19,7 +19,7 @@ A program for finding loops within pi. This app builds off of previous research 
 * Factory Girl
 
 ## Phases
-#### Phase ONE
+### Phase ONE
 Translate the working algorithm, written in C, into a scalable web app.
 
 * Set up database for efficient loop search of 1-6 digit numbers at any position
@@ -27,13 +27,13 @@ Translate the working algorithm, written in C, into a scalable web app.
 * Load database with 1,000,000 digits of pi
 * Confirm known loops
 
-#### Phase TWO
+### Phase TWO
 Implement front end design and visualization
 
 * Create visual component of website to show pi (1,000,000 digits)
 * Create visual aid to show loops with colors
 
-#### Phase THREE
+### Phase THREE
 Scale & Retest
 
 * Set up database for efficient loop search of 1-13 digit numbers at any position
@@ -42,11 +42,11 @@ Scale & Retest
 * Load database with additional random numbers of same size
 * Search for new loops and compare results of pi against random numbers
 
-#### Phase FOUR
+### Phase FOUR
 Refactor front end design and visualization
 
 * Create new way to visualize pi and loops
 * Create graphs and charts for Scaled results
 
-#### Phase FIVE
+### Phase FIVE
 Test all known prime numbers with application
