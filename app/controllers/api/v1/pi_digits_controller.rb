@@ -25,14 +25,32 @@ class Api::V1::PiDigitsController < ApplicationController
           int["nine_digits"]
         ]
         digits_at_id.each do | digit |
-          if digit < 2
-            single = []
+          id = int.id
+          if single[0] == nil
+            single.push({start: id})
           else
-            single[int.id] = digit
+            single.last.each do | key, value |
+              if value == nil
+                # load properly, but need to load a different num
+                single.last[key] = digit
+                binding.pry
+              end
+            end
           end
-          if single.length > 1
-            single.each_key do | key |
-              if digit == key
+          if digit < 2
+            #hits a 0 should back up and ?
+            #hits a 1 should break and move to a 1x
+            binding.pry
+            single.last.each do | key, value |
+              single.last[key] = nil
+              int = Pi_digit.find(key)
+            end
+          else
+            id_hash = {}
+            id_hash[id] = digit
+            single.push(id_hash)
+            if single.length > 1
+              if single[0]["start"] == digit
                 all.push(single)
                 single = []
                 i += 1
@@ -41,17 +59,18 @@ class Api::V1::PiDigitsController < ApplicationController
               else
                 int = Pi_digit.find(digit)
               end
+            else
+              int = Pi_digit.find(digit)
+              search_single_loop(i, int, len, all, single)
             end
-          else
-            int = Pi_digit.find(digit)
+            search_single_loop(i, int, len, all, single)
           end
-          binding.pry
-          search_single_loop(i, int, len, all, single)
         end
+        i += 1
       end
       return all
     end
-    found_loops = search_single_loop(initial_index, initial_int, pi_length, [], {})
+    found_loops = search_single_loop(initial_index, initial_int, pi_length, [], [])
     return t
   end
   #
