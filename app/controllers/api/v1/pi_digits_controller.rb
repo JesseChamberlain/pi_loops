@@ -10,14 +10,14 @@ class Api::V1::PiDigitsController < ApplicationController
     pi_length = 99980
     initial_index = 2
     # known loops at index=19 & index=40
-    initial_int = Pi_digit.find(10)
+    initial_int = Pi_digit.find(1)
     digit_at_id_index = 0
     zero_found = 0
     def search_single_loop(i, digit_i, z, int, len, all, single)
       break_out = false
       while i < len && break_out == false
         digits_at_id = [
-          # int["digit"],
+          int["digit"],
           int["two_digits"],
           int["three_digits"],
           int["four_digits"],
@@ -30,10 +30,11 @@ class Api::V1::PiDigitsController < ApplicationController
           end
           # Chances are this will need to incorporate a complex digit counter for
           # the digit count in each single index. This stops it for now.
-          if single.length == 60
-            if single[0]["start"] == 100
-              binding.pry
-            end
+          # if single[0]["start"] % 20 == 0
+          if single != [] && single[0]["start"] > 30
+            binding.pry
+          end
+          if single.length == 180
             int = Pi_digit.find(single[0]["start"]+1)
             single = []
             search_single_loop(i, digit_i, z, int, len, all, single)
@@ -76,6 +77,7 @@ class Api::V1::PiDigitsController < ApplicationController
                         found_loop.push(key)
                       end
                     end
+                    # all.push("Num: #{digit}, Loop Length: #{found_loop.count-1}")
                     found_loop.push("Length: #{found_loop.count-1}")
                     all.push(found_loop)
                     single = []
