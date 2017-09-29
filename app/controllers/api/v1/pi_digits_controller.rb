@@ -114,7 +114,8 @@ class Api::V1::PiDigitsController < ApplicationController
       end
       return all
     end
-    found_loops = search_single_loop(initial_index, digit_at_id_index, zero_found, initial_int, pi_length, [], [])
+    # Bypassed recursive loop until current results are reviewed
+    # found_loops = search_single_loop(initial_index, digit_at_id_index, zero_found, initial_int, pi_length, [], [])
     return t
   end
 end
